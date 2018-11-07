@@ -5,10 +5,7 @@ node_js:
 # being very slow to download and are largely duplicated with yarn cache.
 cache:
   yarn: true
-# Don't do feature branch builds; we only need one build per PR.
-branches:
-  only:
-    - "master"
+
 before_install:
   - npm install -g yarn@latest
 matrix:
@@ -25,6 +22,7 @@ matrix:
         - yarn run-examples tslint apollo-client
     - script:
         - yarn build
+        - which yarn
         - 'yarn test && yarn coverage'
         - yarn run-examples decaffeinate decaffeinate-parser coffee-lex
     - node_js: '8'

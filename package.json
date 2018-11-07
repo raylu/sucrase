@@ -24,7 +24,8 @@
     "prepublishOnly": "yarn clean && yarn build",
     "release": "sucrase-node script/release.ts",
     "run-examples": "sucrase-node example-runner/example-runner.ts",
-    "test": "yarn lint && nyc yarn test-only",
+    "test": "yarn lint && yarn test-with-coverage",
+    "test-with-coverage": "env -i \"TERM=$TERM\" \"PWD=$PWD\" \"PATH=/bin:/usr/bin\" node_modules/.bin/nyc yarn test-only",
     "test-only": "mocha './test/**/*.ts'",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
